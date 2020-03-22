@@ -15,26 +15,28 @@ class Question extends Model
         return 'slug';
     }
 
-    //protected $fillable = ['title','slug','body','category_id','user_id'];
-    protected $guarded = [];
+    protected $fillable = ['title','slug','body','category_id','user_id'];
+    //protected $guarded = [];
+    protected $with = ['replies'];
 
     //get data siapa yang buat question nya dari table question
     public function user(){
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     //get data replies yang di komentarin di setiap question dari table question
     public function replies(){
-    	return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
 
     //get data jenis category di setiap question dari table question
     public function category(){
-    	return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     //get path ketika akses slug tertentu
     public function getPathAttribute(){
+        //return asset("api/question/".$this->slug."");
         return asset("api/question/$this->slug");
     }
 }
