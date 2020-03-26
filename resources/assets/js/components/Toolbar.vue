@@ -11,11 +11,18 @@
       <v-toolbar-title>Title</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn>Forum</v-btn>
-      <v-btn>Ask Question</v-btn>
-      <v-btn>Category</v-btn>
-      <v-btn>Login</v-btn>
+      <router-link to="/forum">
+        <v-btn>Forum</v-btn>
+      </router-link>
+      <router-link to="/question">
+        <v-btn>Ask Question</v-btn>
+      </router-link>
+      <router-link to="/category">
+        <v-btn>Category</v-btn>
+      </router-link>
+      <router-link to="/login">
+        <v-btn>Login</v-btn>
+      </router-link>
     </v-toolbar>
   </v-card>
 </template>
