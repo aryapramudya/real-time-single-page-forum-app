@@ -1,3 +1,4 @@
+
 import Token from './Token' 
 import AppStorage from './AppStorage' 
 //console.log(res.data)
@@ -12,12 +13,13 @@ class User{
 	responseAfterLogin(res){
 		const access_token = res.data.access_token;
 		const username = res.data.user;
-		//console.log(access_token);
-		//console.log(username);
+		console.log(access_token);
+		console.log(username);
 
 		if(Token.isValid(access_token)){
 			//alert("Test");
 			AppStorage.store(username,access_token);
+			window.location = '/forum'
 		}
 	}
 
@@ -37,6 +39,7 @@ class User{
 
 	logout(){
 		AppStorage.clear();
+		window.location = '/forum'
 	}
 
 	name(){

@@ -8,8 +8,8 @@ class AppStorage{
 	}
 
 	store(user,token){
-		alert('user AppStorage : '+user);
-		alert('token AppStorage : '+token);
+		//alert('user AppStorage : '+user);
+		//alert('token AppStorage : '+token);
 		this.storeToken(token);
 		this.storeUser(user);
 	}

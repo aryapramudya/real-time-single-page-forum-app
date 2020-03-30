@@ -9,9 +9,16 @@
       <!--<v-app-bar-nav-icon></v-app-bar-nav-icon>-->
 
       <v-toolbar-title>Title</v-toolbar-title>
-
       <v-spacer></v-spacer>
-      <router-link to="/forum">
+      <router-link
+        v-for="item in items"
+        :key="item.title"
+        :to="item.to"
+        v-if="item.show">
+        <v-btn>{{item.title}}</v-btn>
+      </router-link>
+
+      <!--<router-link to="/forum">
         <v-btn>Forum</v-btn>
       </router-link>
       <router-link to="/question">
@@ -22,7 +29,29 @@
       </router-link>
       <router-link to="/login">
         <v-btn>Login</v-btn>
-      </router-link>
+      </router-link>-->
+
     </v-toolbar>
   </v-card>
 </template>
+
+<script>
+  export default{
+    data(){
+      return{
+        items:[
+          {title:'Forum', to:'/forum', show:true},
+          {title:'Ask Question', to:'/forum', show:User.loggedIn()},
+          {title:'Category', to:'/forum', show:User.loggedIn()},
+          {title:'Login', to:'/login', show:!User.loggedIn()},
+          {title:'Logout', to:'/logout', show:User.loggedIn()},
+        ]
+      }
+    },
+    created(){
+      EventBus.$on('logout', ()=>{
+        User.logout()
+      })
+    }
+  }
+</script>
